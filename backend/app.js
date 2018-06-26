@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://igna:Lm6DKaGZbpGfe58X@cluster0-hgrxo.mongodb.net
     });
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -49,6 +49,25 @@ app.get('/api/posts', (req, res, next) => {
             posts: documets
         });
     });
-})
+});
+
+// Mia prova:
+// app.get('/api/posts/:id', (req, res, next) => {
+//     Post.findOne({
+//         _id: req.params.id
+//     }).then(document => {
+//         res.status(200).json({
+//             doc: document
+//         });
+//     });
+// });
+
+app.delete("/api/posts/:id", (req, res, next) => {
+    // console.log(req.params.id);
+    Post.deleteOne({_id: req.params.id}).then(result => {
+        console.log(result);
+        res.status(200).json({ message: 'Post deleted!' });
+    });
+});
 
 module.exports = app;

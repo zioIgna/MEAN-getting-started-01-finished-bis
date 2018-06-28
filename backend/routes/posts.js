@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("", (req, res, next) => {
     const post = new Post({
-        _id: req.body.id,
+        // _id: req.body.id,        //questa linea non deve esserci! altrim si forza il DB a dare _id = null al nuovo post
         title: req.body.title,
         content: req.body.content
     });

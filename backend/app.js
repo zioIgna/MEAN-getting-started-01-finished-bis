@@ -31,6 +31,6 @@ app.use((req, res, next) => {
 });
 // Lm6DKaGZbpGfe58X
 
-app.use(postRoutes)
+app.use("/api/posts", postRoutes);
 
 module.exports = app;
